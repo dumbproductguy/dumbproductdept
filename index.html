@@ -1,26 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dumb Product Dept</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dumb Product Dept.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+        }
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Minasans:wght@700&family=Walkway&display=swap" rel="stylesheet" />
+        body {
+            line-height: 1.6;
+            background: #fff;
+        }
 
-  <link rel="stylesheet" href="style.css" />
+        nav {
+            background: #1a1a1a;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff2d55;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            scroll-margin-top: 60px;
+        }
+
+        .home {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1920x1080/?product');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .home h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .home p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            background: #ff2d55;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #e02448;
+        }
+
+        .products {
+            background: #f5f5f5;
+            text-align: center;
+        }
+
+        .products h2, .about h2, .contact h2, .iaq h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .product-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .about, .contact, .iaq {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+
+        .contact input, .contact textarea {
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact button {
+            padding: 0.8rem;
+            background: #ff2d55;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact button:hover {
+            background: #e02448;
+        }
+
+        .iaq dt {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .iaq dd {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        footer a {
+            color: #ff2d55;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .home h1 {
+                font-size: 2.5rem;
+            }
+
+            .home p {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Dumb Product Dept Logo" class="logo" />
-  </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#iaq">IAQ</a></li>
+        </ul>
+    </nav>
 
-  <main>
-    <div class="title-container">
-      <h1 class="main-title">dumb</h1>
-      <h2 class="sub-title">product dept</h2>
-      <p class="tagline">We solve problems the wrong way, efficiently.</p>
-    </div>
-  </main>
+    <section id="home" class="home">
+        <h1>Welcome to the future of dumb.</h1>
+        <p>Groundbreaking products nobody asked for, but everyone lowkey wants.</p>
+        <a href="#products" class="btn">Shop Dumb Products</a>
+        <p style="margin-top: 1rem;"><a href="https://instagram.com" style="color: #fff;">Follow us into the dumbhole → Instagram</a></p>
+    </section>
+
+    <section id="products" class="products">
+        <h2>Our Dumbest Hits</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/300x300/?mug" alt="Mood Mugs">
+                <h3>Mood Mugs</h3>
+                <p>Finally, a mug that matches your breakdown. Changes color based on vibes, caffeine level, or moon phase. Science-ish.</p>
+                <p><strong>$29.99</strong></p>
+                <a href="#" class="btn">Pre-order Dumbness</a>
+            </div>
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/300x300/?chips" alt="Cry-Chips">
+                <h3>Cry-Chips</h3>
+                <p>Salty snacks infused with existential dread. Perfect for 3 AM breakdowns. Gluten-free tears included.</p>
+                <p><strong>$12.99</strong></p>
+                <a href="#" class="btn">Pre-order Dumbness</a>
+            </div>
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/300x300/?floss" alt="Hotdog Floss">
+                <h3>Hotdog Floss</h3>
+                <p>Floss your teeth with the savory taste of ballpark franks. Because oral hygiene should be a vibe.</p>
+                <p><strong>$5.99</strong></p>
+                <a href="#" class="btn">Pre-order Dumbness</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>What even is this?</h2>
+        <p>Dumb Product Dept. is a creative experiment disguised as a fake brand. We create fake ads for fake products with real potential. It's satire, it's art, it’s a coping mechanism. Born from chaos, ADHD, and late-night genius. Follow us, laugh with us, maybe even buy something dumb.</p>
+        <p style="margin-top: 1rem;">Created by Harley Parker, fueled by vibes and way too much caffeine.</p>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Slide into our inbox.</h2>
+        <p>We may or may not reply. Depends on our emotional stability that day.</p>
+        <form>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send Dumbness</button>
+        </form>
+        <p>Email: <a href="mailto:dumbproductdept@gmail.com">dumbproductdept@gmail.com</a></p>
+    </section>
+
+    <section id="iaq" class="iaq">
+        <h2>Infrequently Asked Questions</h2>
+        <dl>
+            <dt>Are these real?</dt>
+            <dd>Depends who's asking. IRS? No.</dd>
+            <dt>Can I buy this?</dt>
+            <dd>Maybe. Hit us up or just manifest it.</dd>
+            <dt>Are you hiring?</dt>
+            <dd>Always. Must be dumb but talented.</dd>
+            <dt>Is this legal?</dt>
+            <dd>Probably.</dd>
+        </dl>
+    </section>
+
+    <footer>
+        <p>© 2025 Dumb Product Dept. All rights reserved. <a href="#home">Back to top</a></p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Message sent! Or not. We’re figuring it out.');
+        });
+    </script>
 </body>
 </html>
